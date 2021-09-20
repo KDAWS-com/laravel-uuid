@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
  */
 trait HasUuidPrimary
 {
-
     /**
      * @return string
      */
@@ -45,7 +44,7 @@ trait HasUuidPrimary
             $model->keyType = 'string';
             $model->incrementing = false;
 
-            if (!$model->getKey()) {
+            if (! $model->getKey()) {
                 $model->{$model->getKeyName()} = (string)Str::orderedUuid();
             }
         });
@@ -55,7 +54,7 @@ trait HasUuidPrimary
          */
         static::saving(function (Model $model) {
             $originalKey = $model->getOriginal($model->getKeyName());
-            if (!is_null($originalKey)) {
+            if (! is_null($originalKey)) {
                 if ($originalKey !== $model->{$model->getKeyName()}) {
                     $model->{$model->getKeyName()} = $originalKey;
                 }
