@@ -1,0 +1,48 @@
+{
+  "name": "kdaws-com/laravel-uuid",
+  "description": "Eloquent UUID Trait for Laravel",
+  "type": "plugin",
+  "keywords": [
+    "KDAWS-com",
+    "laravel",
+    "laravel-uuid"
+  ],
+  "homepage": "https://github.com/kdaws-com/laravel-uuid",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Karl Austin",
+      "email": "karl.austin@kdaws.com",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php" : "^8.0",
+    "illuminate/support": "^8",
+    "illuminate/database": "^8"
+  },
+  "require-dev": {
+    "pestphp/pest": "^1.18",
+    "pestphp/pest-plugin-laravel": "^1.1",
+    "orchestra/testbench": "^6"
+  },
+  "autoload": {
+    "psr-4": {
+      "KDAWScom\\LaravelUuid\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "KDAWScom\\LaravelUuid\\Tests\\": "tests"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "test": "./vendor/bin/pest --no-coverage",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+  }
+}
