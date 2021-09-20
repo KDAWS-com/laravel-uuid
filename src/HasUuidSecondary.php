@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
  */
 trait HasUuidSecondary
 {
-
     /**
      * Are we protecting the UUID from change?
      *
@@ -33,8 +32,8 @@ trait HasUuidSecondary
          * If there is no key currently, generate a new UUID key
          */
         static::creating(function (Model $model) {
-            if (!$model->{$this->laravelUuidSecondaryKeyName}) {
-                $model->{$this->laravelUuidSecondaryKeyName} = (string)Str::orderedUuid();
+            if (! $model->{static::$laravelUuidSecondaryKeyName}) {
+                $model->{static::$laravelUuidSecondaryKeyName} = (string)Str::orderedUuid();
             }
         });
 
@@ -43,10 +42,10 @@ trait HasUuidSecondary
          * the original value.
          */
         static::saving(function (Model $model) {
-            $originalKey = $model->getOriginal($model->{$this->laravelUuidSecondaryKeyName});
-            if (!is_null($originalKey) && $model->laravelUuidSecondaryLocked) {
-                if ($originalKey !== $model->{$this->laravelUuidSecondaryKeyName}) {
-                    $model->{$this->laravelUuidSecondaryKeyName} = $originalKey;
+            $originalKey = $model->getOriginal($model->{static::$laravelUuidSecondaryKeyName});
+            if (! is_null($originalKey) && $model->laravelUuidSecondaryLocked) {
+                if ($originalKey !== $model->{static::$laravelUuidSecondaryKeyName}) {
+                    $model->{static::$laravelUuidSecondaryKeyName} = $originalKey;
                 }
             }
         });
